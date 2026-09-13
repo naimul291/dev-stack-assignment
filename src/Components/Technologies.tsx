@@ -52,6 +52,10 @@ interface iTechnologyProps {
             });
         };
         
+        const handleRemoveAllFromStack = () => {
+            setCart([]);
+        };
+
     return (
         <div className="container mx-auto">
 
@@ -180,6 +184,12 @@ interface iTechnologyProps {
                                     ))}
 
                                 </div>
+
+                                {/* Remove All Technology Button */}
+                                <button type="button" onClick={handleRemoveAllFromStack}
+                                    className="w-full mt-4 py-2.5 rounded-md bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition duration-200">
+                                    Remove All
+                                </button>
 
                             </div>
 
