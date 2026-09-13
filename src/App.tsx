@@ -2,6 +2,7 @@ import { Suspense, useState } from "react"
 import Navbar from "./Components/Navbar"
 import Banner from "./Components/Banner"
 import Technologies from "./Components/Technologies"
+import Footer from "./Components/footer"
 import type { iTechnology } from "./Type/Technologies"
 
 
@@ -28,6 +29,10 @@ function App() {
 
         <Suspense fallback={<div className="text-xl font-semibold text-center">Loading Technologies...</div>}>
         <Technologies technologiesPromise={technologiesPromise} cart={cart} setCart={setCart}/>
+      </Suspense>
+
+      <Suspense>
+        <Footer />
       </Suspense>
 
     </div>
