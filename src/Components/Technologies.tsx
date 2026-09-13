@@ -1,6 +1,7 @@
 import { use, type Dispatch, type SetStateAction } from "react";
 import type { iTechnology } from "../Type/Technologies";
 import { IoIosStar} from "react-icons/io";
+import { RxCross2 } from "react-icons/rx";
 import { Bounce, toast } from "react-toastify";
 
 interface iTechnologyProps {
@@ -37,6 +38,20 @@ interface iTechnologyProps {
             });
         };
 
+        const handleRemoveFromStack = (id: number) => {
+            const technology = cart.filter(
+                (item) => item.id === id
+            )[0];
+            setCart((PreviousCart) =>PreviousCart.filter((item) => item.id !== id)
+                );
+                    toast.warn(`${technology.name} Removed from stack`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    theme: "light",
+                    transition: Bounce,
+            });
+        };
+        
     return (
         <div className="container mx-auto">
 
@@ -114,6 +129,65 @@ interface iTechnologyProps {
 
                 </div>
 
+                {/* Your Stack Section  */}
+                <div className="col-span-12 lg:col-span-3">
+
+                    <div className="border border-gray-100 rounded-xl p-5 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.08)]">
+
+                        <h3 className="font-bold text-xl text-black">Your Stack</h3>
+
+                        <p className="text-sm text-gray-400 mt-2">
+                            {cart.length === 0 ? "No technologies selected yet." : `${cart.length} technologies selected`}
+                        </p>
+
+                        {cart.length === 0 ? (
+
+                            <div className="mt-5 min-h-[126px] border-2 border-dashed border-slate-200 rounded-xl flex items-center justify-center">
+                                <p className="text-sm text-slate-400">Your stack is empty.</p>
+                            </div>
+
+                        ) : (
+
+                            <div>
+
+                                {/* Selected Technologies */}
+                                <div className="mt-5 space-y-3">
+                                    
+                                    {cart.map((technology) => (
+                                        <div key={technology.id}className="flex items-center justify-between border border-gray-100 rounded-lg p-3">
+
+                                            <div className="flex items-center gap-3">
+
+                                                {/* Technology Icon */}
+                                                <img src={technology.icon} alt={technology.name} className="w-8 h-8 object-contain"/>
+
+                                                {/* Technology Name and Category */}
+                                                <div>
+                                                    <h4 className="text-sm font-semibold text-gray-900">{technology.name}</h4>
+                                                    <p className="text-[10px] text-gray-400">{technology.category}</p>
+                                                </div>
+
+                                            </div>
+
+                                            {/* Remove Single Technology */}
+                                            <button type="button" onClick={() => handleRemoveFromStack(technology.id)}
+                                                className="text-gray-400 hover:text-red-500 cursor-pointer transition duration-200">
+                                                <RxCross2 size={18} />
+                                            </button>
+
+                                        </div>
+
+                                    ))}
+
+                                </div>
+
+                            </div>
+
+                        )}
+
+                    </div>
+
+                </div>
 
             </div>
 
