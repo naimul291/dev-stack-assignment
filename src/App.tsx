@@ -1,5 +1,7 @@
 import { Suspense } from "react"
 import Navbar from "./Components/Navbar"
+import Banner from "./Components/Banner"
+
 
 function App() {
 
@@ -8,6 +10,10 @@ function App() {
 
       <Suspense>
           <Navbar />
+      </Suspense>
+
+      <Suspense>
+        <Banner />
       </Suspense>
 
     </div>
