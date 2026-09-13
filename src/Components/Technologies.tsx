@@ -56,6 +56,16 @@ interface iTechnologyProps {
             setCart([]);
         };
 
+        const badgeColors: Record<string, string> = {
+            blue: "bg-blue-50 text-blue-500",
+            green: "bg-green-50 text-green-500",
+            orange: "bg-orange-50 text-orange-500",
+            black: "bg-gray-100 text-gray-900",
+            red: "bg-red-50 text-red-500",
+            yellow: "bg-yellow-50 text-yellow-600",
+            cyan: "bg-cyan-50 text-cyan-500",
+        };
+
     return (
         <div className="container mx-auto">
 
@@ -84,7 +94,7 @@ interface iTechnologyProps {
 
                                     {/* Badge */}
                                     {technology.badge && (
-                                        <span className="bg-sky-50 text-sky-500 text-[9px] font-medium px-2.5 py-1 rounded-full">
+                                        <span className={`${badgeColors[technology.badgeColor]} text-[9px] font-medium px-2.5 py-1 rounded-full`}>
                                             {technology.badge}
                                         </span>
                                     )}
